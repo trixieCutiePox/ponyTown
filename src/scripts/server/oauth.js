@@ -8,6 +8,7 @@ const passport_facebook_1 = require("@passport-next/passport-facebook");
 const passport_github2_1 = require("passport-github2");
 const passport_vkontakte_1 = require("passport-vkontakte");
 const passport_patreon_1 = require("passport-patreon");
+const passport_discord_1 = require("passport-discord");
 const colors_1 = require("../common/colors");
 const color_1 = require("../common/color");
 const config_1 = require("./config");
@@ -48,6 +49,12 @@ const providerList = [
         color: color_1.colorToCSS(colors_1.PATREON_COLOR),
         strategy: passport_patreon_1.Strategy,
     },
+    {
+        id: 'discord',
+        name: 'Discord',
+        color: '#7289DA',
+        strategy: passport_discord_1.Strategy,
+    },
 ];
 providerList.forEach(p => p.auth = config_1.config.oauth[p.id]);
 providerList.filter(p => p.auth && p.auth.connectOnly).forEach(p => p.connectOnly = true);
@@ -61,6 +68,9 @@ function getProfileUrl(profile) {
     }
     else if (profile.provider === 'facebook') {
         return `http://www.facebook.com/${profile.id}`;
+    }
+    else if (profile.provider === 'discord') {
+        return undefined;
     }
     else if (profile._json.attributes && profile._json.attributes.url) { // patreon
         return profile._json.attributes.url;
