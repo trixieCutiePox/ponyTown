@@ -134,6 +134,7 @@ exports.oauthIcons = {
     github: fa_icons_3.faGithub,
     vkontakte: fa_icons_3.faVk,
     google: fa_icons_3.faGoogle,
+    discord: fa_icons_3.faDiscord
 };
 exports.uaIcons = {
     // browser
